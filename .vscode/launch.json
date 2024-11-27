@@ -1,0 +1,50 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "LoanCalc",
+            "request": "launch",
+            "mainClass": "LoanCalc",
+            "args": ["100000", "5", "10"]
+        },
+        {
+            "type": "java",
+            "name": "Algebra",
+            "request": "launch",
+            "mainClass": "Algebra",
+            "projectName": "hw3-barbuium_1694349c"
+        },
+        {
+            "type": "java",
+            "name": "Anagram",
+            "request": "launch",
+            "mainClass": "Anagram",
+            "projectName": "hw3-barbuium_1694349c"
+        },
+        {
+            "type": "java",
+            "name": "LoanCalc",
+            "request": "launch",
+            "mainClass": "LoanCalc",
+            "projectName": "hw3-barbuium_1694349c"
+        },
+        {
+            "type": "java",
+            "name": "TestAlgebra",
+            "request": "launch",
+            "mainClass": "TestAlgebra",
+            "projectName": "hw3-barbuium_1694349c"
+        },
+        {
+            "type": "java",
+            "name": "TestAnagram",
+            "request": "launch",
+            "mainClass": "TestAnagram",
+            "projectName": "hw3-barbuium_1694349c"
+        }
+    ]
+}

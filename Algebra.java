@@ -56,32 +56,47 @@ public class Algebra {
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
         int result = 0;
-        int abs2 = x2 < 0 ? minus(0, x2) : x2;
-		while (abs2 > 0) {
-			result = plus(result, x1);
-			abs2--;
+		if (x1 == 0 || x2 == 0)
+			return result;
+		if (x2 == 1)
+			return x1;
+		if (x1 == 1)
+			return x2;
+		if (x1 > 0 && x2 > 0) {
+			for (int i = 0; i < x2; i++)
+				result = plus(result, x1);
+			return result;			
+		}	
+		if (x1 < 0 && x2 < 0) {
+			int newx1 = Math.abs(x1);
+			for (int i = 0; i < Math.abs(x2); i++) ;
+				result = plus(result,newx1);
+				return result;
+		}	
+		if ((x1 < 0 && x2 > 0) || (x1 > 0 && x2 < 0)) {
+			int newX1 = Math.abs(x1);
+			int newX2 = Math.abs(x2);
+			for (int i = 0; i < newX2; i++)
+				result = plus(result, newX1);
+				int total = minus(0, result);
+				return total;
 		}
-
-		if ((x1 < 0 && x2 >= 0) || (x1 >= 0 && x2 < 0)) {
-			result = minus(0, result);
-		}
-        return result;
+		return result;
     }
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-			if (n == 0) {
+			if (n == 0)
 				return 1;
-			}
+			if (n < 0)
+				return 0;
+			if (n == 1)
+				return x;	
 			int result = 1;
-			int absN = n < 0 ? minus(0, n) : n;
-
-			while (absN > 0) {
-				result = times(result, x);
-				absN--;
-			}
-			if (x < 0 && (n % 2 != 0)) {
-				result = minus(0, result);
+			if (n > 0) {
+				for (int i = 0; i < n; i++)
+					result = times(result, x);
+					return result;
 			}
 			return result;
 	}

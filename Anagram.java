@@ -55,15 +55,15 @@ public class Anagram {
 	// to lower-case, and all the other characters are deleted, except for spaces, which are left
 	// as is. For example, the string "What? No way!" becomes "whatnoway"
 	public static String preProcess(String str) {
-			// Remove all non-alphabetical characters and convert to lowercase
-			StringBuilder cleaned = new StringBuilder();
+			str = input.toLowerCase();
+			StringBuilder result = new StringBuilder();
 			for (int i = 0; i < str.length(); i++) {
-				char c = str.charAt(i);
-				if (Character.isLetter(c)) {
-					cleaned.append(Character.toLowerCase(c));
+				char currentChar = str.charAt(i);
+				if (Character.isLetter(currentChar) || currentChar == ' ') {
+					result.append(currentChar);
 				}
 			}
-			return cleaned.toString();
+			return result.toString();
 		}
 	   
 	// Returns a random anagram of the given string. The random anagram consists of the same

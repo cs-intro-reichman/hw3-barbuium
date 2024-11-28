@@ -30,7 +30,7 @@ public class LoanCalc {
 	private static double endBalance(double loan, double rate, int n, double payment) {	
 			double balance = loan;
 			for (int i = 0; i < n; i++) {
-				balance = (balance - payment) * (1 + rate / 100);
+				balance = (balance - payment) * (1 + (rate / 100));
 			}
 			return balance;
 	}
@@ -42,19 +42,12 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
-			double guess = loan / n; 
-			iterationCounter = 0;
-		
-			while (true) {
-				double balance = endBalance(loan, rate, n, guess);
+			double g = loan / n; 
+			while (endBalance(loan, rate, n, g) > 0) {
+				g += epsilon;
 				iterationCounter++;
-				
-				if (Math.abs(balance) <= epsilon) {
-					break;
-				}
-				guess += epsilon;
 			}
-			return guess;
+			return g;
 		}
     
     // Uses bisection search to compute an approximation of the periodical payment 
@@ -63,24 +56,20 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
-			double low = loan / n; 
-			double high = loan * (1 + rate / 100);
+			double L = loan / n; 
+			double H = loan;
+			double g = (H + L) / 2;
 			iterationCounter = 0;
-		
-			while ((high - low) > epsilon) {
-				double guess = (low + high) / 2;
-				double balance = endBalance(loan, rate, n, guess);
+
+			while ((H - L) > epsilon) {
 				iterationCounter++;
-		
-				if (Math.abs(balance) <= epsilon) {
-					break;
-				}
-				if (balance > 0) {
-					low = guess;
-				} else {
-					high = guess;
-				}
+				if (endBalance(loan, rate, n, g) * endBalance(loan, rate, n, L) > 0)
+					L = g;
+				else
+					H = g;
+				g = (H + L) / 2;
+
 			}
-			return (low + high) / 2;
+			return g;
 		}
 }

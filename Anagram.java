@@ -69,24 +69,17 @@ public class Anagram {
 	// Returns a random anagram of the given string. The random anagram consists of the same
 	// characters as the given string, re-arranged in a random order. 
 	public static String randomAnagram(String str) {
-		// Convert the string into a character array
         char[] charArray = str.toCharArray();
-        
-        // Create a Random object for generating random indices
         Random rand = new Random();
         
-        // Randomly shuffle the array
         for (int i = 0; i < charArray.length; i++) {
-            // Pick a random index from the remaining part of the array
             int randomIndex = rand.nextInt(charArray.length);
             
-            // Swap the current character with the randomly selected character
             char temp = charArray[i];
             charArray[i] = charArray[randomIndex];
             charArray[randomIndex] = temp;
         }
         
-        // Convert the shuffled character array back into a string and return it
         return new String(charArray);
     }
 }
